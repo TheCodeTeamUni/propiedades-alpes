@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 import propiedadesalpes.modulos.propiedades.dominio.objetos_valor as ov
 from propiedadesalpes.modulos.propiedades.dominio.eventos import PropiedadCreada
 from propiedadesalpes.seedwork.dominio.entidades import Locacion, AgregacionRaiz, Entidad
+
+
 @dataclass
 class Propiedad(AgregacionRaiz):
     id: str = None
@@ -14,7 +16,7 @@ class Propiedad(AgregacionRaiz):
     piso: str = None
     longitud: str = None
     latitud: str = None
-    
+
     def crear_propiedad(self, propiedad: Propiedad):
         self.id = propiedad.id
         self.fecha_creacion = propiedad.fecha_creacion
@@ -25,4 +27,5 @@ class Propiedad(AgregacionRaiz):
         self.longitud = propiedad.longitud
         self.latitud = propiedad.latitud
 
-        self.agregar_evento(PropiedadCreada(fecha_creacion=self.fecha_creacion, nombre=self.nombre, descripcion=self.descripcion, tipo=self.tipo, piso=self.piso, longitud=self.longitud, latitud=self.latitud))
+        self.agregar_evento(PropiedadCreada(fecha_creacion=self.fecha_creacion, nombre=self.nombre,
+                            descripcion=self.descripcion, tipo=self.tipo, piso=self.piso, longitud=self.longitud, latitud=self.latitud))

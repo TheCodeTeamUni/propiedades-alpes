@@ -3,7 +3,7 @@ from propiedadesalpes.seedwork.aplicacion.queries import ejecutar_query as query
 from propiedadesalpes.modulos.propiedades.infraestructura.repositorios import RepositorioPropiedades
 from dataclasses import dataclass
 from .base import ReservaQueryBaseHandler
-from propiedadesalpes.modulos.propiedades.aplicacion.mapeadores import MapeadorReserva
+from propiedadesalpes.modulos.propiedades.aplicacion.mapeadores import MapeadorPropiedad
 import uuid
 
 @dataclass
@@ -14,7 +14,7 @@ class ObtenerReservaHandler(ReservaQueryBaseHandler):
 
     def handle(self, query: ObtenerReserva) -> QueryResultado:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
-        propiedad =  self.fabrica_vuelos.crear_objeto(repositorio.obtener_por_id(query.id), MapeadorReserva())
+        propiedad =  self.fabrica_vuelos.crear_objeto(repositorio.obtener_por_id(query.id), MapeadorPropiedad())
         return QueryResultado(resultado=propiedad)
 
 @query.register(ObtenerReserva)

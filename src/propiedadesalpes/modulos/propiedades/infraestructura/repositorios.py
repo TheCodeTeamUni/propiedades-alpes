@@ -1,10 +1,3 @@
-""" Repositorios para el manejo de persistencia de objetos de dominio en la capa de infrastructura del dominio de vuelos
-
-En este archivo usted encontrará las diferentes repositorios para
-persistir objetos dominio (agregaciones) en la capa de infraestructura del dominio de vuelos
-
-"""
-
 from propiedadesalpes.config.db import db
 from propiedadesalpes.modulos.propiedades.dominio.repositorios import RepositorioPropiedades, RepositorioProveedores
 from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombrePropiedades, Odo, Leg, Segmento, Itinerario, CodigoIATA
@@ -47,22 +40,22 @@ class RepositorioProveedoresSQLite(RepositorioProveedores):
 class RepositorioPropiedadesSQLite(RepositorioPropiedades):
 
     def __init__(self):
-        self._fabrica_vuelos: FabricaPropiedades = FabricaPropiedades()
+        self._fabrica_propiedades: FabricaPropiedades = FabricaPropiedades()
 
     @property
-    def fabrica_vuelos(self):
-        return self._fabrica_vuelos
+    def fabrica_propiedades(self):
+        return self._fabrica_propiedades
 
     def obtener_por_id(self, id: UUID) -> Propiedad:
         propiedad_dto = db.session.query(ReservaDTO).filter_by(id=str(id)).one()
-        return self.fabrica_vuelos.crear_objeto(propiedad_dto, MapeadorReserva())
+        return self.fabrica_propiedades.crear_objeto(propiedad_dto, MapeadorReserva())
 
     def obtener_todos(self) -> list[Propiedad]:
         # TODO
         raise NotImplementedError
 
     def agregar(self, propiedad: Propiedad):
-        propiedad_dto = self.fabrica_vuelos.crear_objeto(propiedad, MapeadorReserva())
+        propiedad_dto = self.fabrica_propiedades.crear_objeto(propiedad, MapeadorReserva())
         db.session.add(propiedad_dto)
 
     def actualizar(self, propiedad: Propiedad):

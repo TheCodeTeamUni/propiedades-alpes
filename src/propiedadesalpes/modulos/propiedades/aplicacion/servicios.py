@@ -4,7 +4,7 @@ from propiedadesalpes.modulos.propiedades.dominio.fabricas import FabricaPropied
 from propiedadesalpes.modulos.propiedades.infraestructura.fabricas import FabricaRepositorio
 from propiedadesalpes.modulos.propiedades.infraestructura.repositorios import RepositorioPropiedades
 from propiedadesalpes.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-from .mapeadores import MapeadorReserva
+from .mapeadores import MapeadorPropiedad
 
 from .dto import ReservaDTO
 
@@ -25,7 +25,7 @@ class ServicioPropiedad(Servicio):
         return self._fabrica_vuelos       
     
     def crear_propiedad(self, propiedad_dto: ReservaDTO) -> ReservaDTO:
-        propiedad: Propiedad = self.fabrica_vuelos.crear_objeto(propiedad_dto, MapeadorReserva())
+        propiedad: Propiedad = self.fabrica_vuelos.crear_objeto(propiedad_dto, MapeadorPropiedad())
         propiedad.crear_propiedad(propiedad)
 
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
@@ -34,9 +34,9 @@ class ServicioPropiedad(Servicio):
         UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
 
-        return self.fabrica_vuelos.crear_objeto(propiedad, MapeadorReserva())
+        return self.fabrica_vuelos.crear_objeto(propiedad, MapeadorPropiedad())
 
     def obtener_propiedad_por_id(self, id) -> ReservaDTO:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
-        return self.fabrica_vuelos.crear_objeto(repositorio.obtener_por_id(id), MapeadorReserva())
+        return self.fabrica_vuelos.crear_objeto(repositorio.obtener_por_id(id), MapeadorPropiedad())
 

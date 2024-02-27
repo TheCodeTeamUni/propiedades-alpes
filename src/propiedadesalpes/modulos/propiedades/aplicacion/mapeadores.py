@@ -24,7 +24,7 @@ class MapeadorPropiedadDTOJson(AppMap):
 
         propiedad_dto = PropiedadDTO(eventId=event_id, fecha_creacion=fecha_creacion, nombre=nombre,
                                      descripcion=descripcion, tipo=tipo, piso=piso, longitud=longitud, latitud=latitud)
-        
+
         print("MapeadorPropiedadDTOJson EXTERNO TO DTO: ", propiedad_dto)
         print("\n")
 
@@ -33,11 +33,12 @@ class MapeadorPropiedadDTOJson(AppMap):
     def dto_a_externo(self, dto: PropiedadDTO) -> dict:
         return dto.__dict__
 
-"""
-class MapeadorReserva(RepMap):
+
+class MapeadorPropiedad(RepMap):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
 
-    def _procesar_itinerario(self, itinerario_dto: ItinerarioDTO) -> Itinerario:
+    """
+    def _procesar_itinerario(self, itinerario_dto: PropiedadDTO) -> Itinerario:
         odos = list()
 
         for odo_dto in itinerario_dto.odos:
@@ -66,9 +67,10 @@ class MapeadorReserva(RepMap):
             odos.append(Odo(segmentos))
 
         return Itinerario(odos)
+    """
 
     def obtener_tipo(self) -> type:
-        return Reserva.__class__
+        return Propiedad.__class__
 
     def locacion_a_dict(self, locacion):
         if not locacion:
@@ -78,7 +80,8 @@ class MapeadorReserva(RepMap):
             codigo=locacion.codigo,   nombre=locacion.nombre,   fecha_actualizacion=locacion.fecha_actualizacion.strftime(self._FORMATO_FECHA),   fecha_creacion=locacion.fecha_creacion.strftime(self._FORMATO_FECHA)
         )
 
-    def entidad_a_dto(self, entidad: Reserva) -> ReservaDTO:
+    """
+    def entidad_a_dto(self, entidad: Propiedad) -> PropiedadDTO:
 
         fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(
@@ -110,8 +113,10 @@ class MapeadorReserva(RepMap):
 
         return ReservaDTO(fecha_creacion, fecha_actualizacion, _id, itinerarios)
 
-    def dto_a_entidad(self, dto: ReservaDTO) -> Reserva:
-        propiedad = Reserva()
+    
+
+    def dto_a_entidad(self, dto: PropiedadDTO) -> Propiedad:
+        propiedad = Propiedad()
         propiedad.itinerarios = list()
 
         itinerarios_dto: list[ItinerarioDTO] = dto.itinerarios
@@ -120,4 +125,5 @@ class MapeadorReserva(RepMap):
             propiedad.itinerarios.append(self._procesar_itinerario(itin))
 
         return propiedad
-"""
+
+    """
