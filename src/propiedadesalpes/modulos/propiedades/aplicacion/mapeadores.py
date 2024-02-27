@@ -1,6 +1,6 @@
 from propiedadesalpes.seedwork.aplicacion.dto import Mapeador as AppMap
 from propiedadesalpes.seedwork.dominio.repositorios import Mapeador as RepMap
-from propiedadesalpes.modulos.propiedades.dominio.entidades import Propiedad, Aeropuerto
+from propiedadesalpes.modulos.propiedades.dominio.entidades import Propiedad, Propiedadespuerto
 from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import Itinerario, Odo, Segmento, Leg
 from .dto import PropiedadDTO
 
@@ -47,9 +47,9 @@ class MapeadorReserva(RepMap):
                 legs = list()
 
                 for leg_dto in seg_dto.legs:
-                    destino = Aeropuerto(codigo=leg_dto.destino.get(
+                    destino = Propiedadespuerto(codigo=leg_dto.destino.get(
                         'codigo'), nombre=leg_dto.destino.get('nombre'))
-                    origen = Aeropuerto(codigo=leg_dto.origen.get(
+                    origen = Propiedadespuerto(codigo=leg_dto.origen.get(
                         'codigo'), nombre=leg_dto.origen.get('nombre'))
                     fecha_salida = datetime.strptime(
                         leg_dto.fecha_salida, self._FORMATO_FECHA)

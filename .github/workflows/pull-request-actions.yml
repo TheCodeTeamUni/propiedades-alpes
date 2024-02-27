@@ -1,5 +1,5 @@
 
-name: Pull Request AeroAlpes
+name: Pull Request PropiedadesAlpes
 'on':
   pull_request:
     branches:

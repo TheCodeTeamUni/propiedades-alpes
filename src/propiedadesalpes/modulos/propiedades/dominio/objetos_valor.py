@@ -20,7 +20,7 @@ class CodigoICAO(Codigo):
     ...
 
 @dataclass(frozen=True)
-class NombreAero():
+class NombrePropiedades():
     nombre: str
 
 @dataclass(frozen=True)

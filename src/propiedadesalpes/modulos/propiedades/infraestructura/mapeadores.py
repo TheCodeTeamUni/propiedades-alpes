@@ -6,8 +6,8 @@ encargados de la transformación entre formatos de dominio y DTOs
 """
 
 from propiedadesalpes.seedwork.dominio.repositorios import Mapeador
-from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombreAero, Odo, Leg, Segmento, Itinerario, CodigoIATA
-from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor, Aeropuerto, Propiedad
+from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombrePropiedades, Odo, Leg, Segmento, Itinerario, CodigoIATA
+from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor, Propiedadespuerto, Propiedad
 from .dto import Reserva as ReservaDTO
 from .dto import Itinerario as ItinerarioDTO
 
@@ -18,8 +18,8 @@ class MapeadorReserva(Mapeador):
         itin_dict = dict()
         
         for itin in itinerarios_dto:
-            destino = Aeropuerto(codigo=itin.destino_codigo, nombre=None)
-            origen = Aeropuerto(codigo=itin.origen_codigo, nombre=None)
+            destino = Propiedadespuerto(codigo=itin.destino_codigo, nombre=None)
+            origen = Propiedadespuerto(codigo=itin.origen_codigo, nombre=None)
             fecha_salida = itin.fecha_salida
             fecha_llegada = itin.fecha_llegada
 

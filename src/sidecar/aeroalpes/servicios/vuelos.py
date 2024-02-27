@@ -3,9 +3,9 @@ import requests
 import datetime
 import os
 
-from aeroalpes.pb2py.vuelos_pb2 import Reserva, RespuestaReserva
-from aeroalpes.pb2py.vuelos_pb2_grpc import VuelosServicer
-from aeroalpes.utils import dict_a_proto_itinerarios
+from propiedadesalpes.pb2py.vuelos_pb2 import Reserva, RespuestaReserva
+from propiedadesalpes.pb2py.vuelos_pb2_grpc import VuelosServicer
+from propiedadesalpes.utils import dict_a_proto_itinerarios
 
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -13,7 +13,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 TIMESTAMP_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 
 class Vuelos(VuelosServicer):
-    HOSTNAME_ENV: str = 'AEROALPES_ADDRESS'
+    HOSTNAME_ENV: str = 'PROPIEDADESALPES_ADDRESS'
     REST_API_HOST: str = f'http://{os.getenv(HOSTNAME_ENV, default="localhost")}:5000'
     REST_API_ENDPOINT: str = '/vuelos/propiedad'
 

@@ -7,8 +7,8 @@ persistir objetos dominio (agregaciones) en la capa de infraestructura del domin
 
 from propiedadesalpes.config.db import db
 from propiedadesalpes.modulos.propiedades.dominio.repositorios import RepositorioPropiedades, RepositorioProveedores
-from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombreAero, Odo, Leg, Segmento, Itinerario, CodigoIATA
-from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor, Aeropuerto, Propiedad
+from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombrePropiedades, Odo, Leg, Segmento, Itinerario, CodigoIATA
+from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor, Propiedadespuerto, Propiedad
 from propiedadesalpes.modulos.propiedades.dominio.fabricas import FabricaPropiedades
 from .dto import Reserva as ReservaDTO
 from .mapeadores import MapeadorReserva
@@ -21,13 +21,13 @@ class RepositorioProveedoresSQLite(RepositorioProveedores):
         raise NotImplementedError
 
     def obtener_todos(self) -> list[Propiedad]:
-        origen=Aeropuerto(codigo="CPT", nombre="Cape Town International")
-        destino=Aeropuerto(codigo="JFK", nombre="JFK International Airport")
+        origen=Propiedadespuerto(codigo="CPT", nombre="Cape Town International")
+        destino=Propiedadespuerto(codigo="JFK", nombre="JFK International Airport")
         legs=[Leg(origen=origen, destino=destino)]
         segmentos = [Segmento(legs)]
         odos=[Odo(segmentos=segmentos)]
 
-        proveedor = Proveedor(codigo=CodigoIATA(codigo="AV"), nombre=NombreAero(nombre= "Avianca"))
+        proveedor = Proveedor(codigo=CodigoIATA(codigo="AV"), nombre=NombrePropiedades(nombre= "Avianca"))
         proveedor.itinerarios = [Itinerario(odos=odos, proveedor=proveedor)]
         return [proveedor]
 

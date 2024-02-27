@@ -1,5 +1,5 @@
 from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import Odo, ParametroBusca, Segmento, Leg, CodigoIATA, Itinerario
-from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor,Aeropuerto
+from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor,Propiedadespuerto
 
 def filtrar_mejores_itinerarios(itinerarios: list[Itinerario]) -> list[Itinerario]:
     # Logica compleja para filtrar itinerarios
@@ -15,8 +15,8 @@ def buscar_itinerarios(odos: list[Odo], parametros: ParametroBusca) -> list[Itin
 
     return filtrar_mejores_itinerarios(itinerarios)
 
-# origen=Aeropuerto(codigo=CodigoIATA(codigo="CPT"), nombre="Cape Town International")
-# destino=Aeropuerto(codigo=CodigoIATA(codigo="JFK"), nombre="JFK International Airport")
+# origen=Propiedadespuerto(codigo=CodigoIATA(codigo="CPT"), nombre="Cape Town International")
+# destino=Propiedadespuerto(codigo=CodigoIATA(codigo="JFK"), nombre="JFK International Airport")
 # legs=[Leg(origen=origen, destino=destino)]
 # segmentos = [Segmento(legs)]
 # ruta = Odo(segmentos=segmentos)

@@ -83,7 +83,7 @@ def propiedad_correcta():
                                     "fecha_llegada": "2022-11-22T23:55:00Z",
                                     "destino": {
                                         "codigo": "LAX",
-                                        "nombre": "Aeropuerto Internacional de Los Ángeles (Los Angeles International Airport)"
+                                        "nombre": "Propiedadespuerto Internacional de Los Ángeles (Los Angeles International Airport)"
                                     },
                                     "origen": {
                                         "codigo": "JFK",
