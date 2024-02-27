@@ -1,6 +1,6 @@
 from propiedadesalpes.seedwork.aplicacion.dto import Mapeador as AppMap
 from propiedadesalpes.seedwork.dominio.repositorios import Mapeador as RepMap
-from propiedadesalpes.modulos.propiedades.dominio.entidades import Propiedad, Propiedadespuerto
+from propiedadesalpes.modulos.propiedades.dominio.entidades import Propiedad
 from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import Itinerario, Odo, Segmento, Leg
 from .dto import PropiedadDTO
 

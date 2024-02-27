@@ -2,9 +2,9 @@
 name = "propiedadesalpes"
 version = "1.0.0"
 authors = [
-  { name="Juan Urrego", email="js.urrego110@uniandes.edu.co" },
+  { name="the Code Team"},
 ]
-description = "Proyecto de ejemplo de PropiedadesAlpes"
+description = "Proyecto propiedades de los alpes"
 readme = "README.md"
 requires-python = ">=3.10"
 
