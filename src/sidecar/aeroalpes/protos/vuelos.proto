@@ -61,5 +61,5 @@ message QueryReserva {
 
 message RespuestaReserva {
     string mensaje = 1;
-    optional Reserva reserva = 2;
+    optional Reserva propiedad = 2;
 }

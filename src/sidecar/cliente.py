@@ -12,7 +12,7 @@ import os
 import json
 
 
-def importar_comando_reserva(json_file):
+def importar_comando_propiedad(json_file):
     json_dict = json.load(json_file)
 
     # Transformamos en 
@@ -26,23 +26,23 @@ def importar_comando_reserva(json_file):
 
     return json_dict
 
-def dict_a_proto_reserva(dict_reserva):
-    itinerarios = dict_a_proto_itinerarios(dict_reserva.get('itinerarios', []))
-    return vuelos_pb2.Reserva(id=dict_reserva.get('id'), itinerarios=itinerarios)
+def dict_a_proto_propiedad(dict_propiedad):
+    itinerarios = dict_a_proto_itinerarios(dict_propiedad.get('itinerarios', []))
+    return vuelos_pb2.Reserva(id=dict_propiedad.get('id'), itinerarios=itinerarios)
 
 def run():
 
-    print("Crear una reserva")
+    print("Crear una propiedad")
     with grpc.insecure_channel('localhost:50051') as channel:
-        json_file = open(f'{os.path.dirname(__file__)}/mensajes/crear_reserva.json')
-        json_dict = importar_comando_reserva(json_file)
-        reserva = dict_a_proto_reserva(json_dict)
+        json_file = open(f'{os.path.dirname(__file__)}/mensajes/crear_propiedad.json')
+        json_dict = importar_comando_propiedad(json_file)
+        propiedad = dict_a_proto_propiedad(json_dict)
 
 
         stub = vuelos_pb2_grpc.VuelosStub(channel)
-        response = stub.CrearReserva(reserva)
+        response = stub.CrearReserva(propiedad)
     print("Greeter client received: " + response.mensaje)
-    print(f'Reserva: {response.reserva}')
+    print(f'Reserva: {response.propiedad}')
 
 
 if __name__ == '__main__':

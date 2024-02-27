@@ -15,7 +15,7 @@ TIMESTAMP_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 class Vuelos(VuelosServicer):
     HOSTNAME_ENV: str = 'AEROALPES_ADDRESS'
     REST_API_HOST: str = f'http://{os.getenv(HOSTNAME_ENV, default="localhost")}:5000'
-    REST_API_ENDPOINT: str = '/vuelos/reserva'
+    REST_API_ENDPOINT: str = '/vuelos/propiedad'
 
     def CrearReserva(self, request, context):
         dict_obj = MessageToDict(request, preserving_proto_field_name=True)
@@ -41,12 +41,12 @@ class Vuelos(VuelosServicer):
                 leg['fecha_llegada'] = datetime.datetime.now()
 
 
-            reserva =  Reserva(id=respuesta.get('id'), 
+            propiedad =  Reserva(id=respuesta.get('id'), 
                 itinerarios=dict_a_proto_itinerarios(itinerarios), 
                 fecha_actualizacion=fecha_actualizacion, 
                 fecha_creacion=fecha_creacion)
 
-            return RespuestaReserva(mensaje='OK', reserva=reserva)
+            return RespuestaReserva(mensaje='OK', propiedad=propiedad)
         else:
             return RespuestaReserva(mensaje=f'Error: {r.status_code}')
 

@@ -59,12 +59,12 @@ class Reserva(_message.Message):
     def __init__(self, id: _Optional[str] = ..., fecha_creacion: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., fecha_actualizacion: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., itinerarios: _Optional[_Iterable[_Union[Itinerario, _Mapping]]] = ...) -> None: ...
 
 class RespuestaReserva(_message.Message):
-    __slots__ = ["mensaje", "reserva"]
+    __slots__ = ["mensaje", "propiedad"]
     MENSAJE_FIELD_NUMBER: _ClassVar[int]
     RESERVA_FIELD_NUMBER: _ClassVar[int]
     mensaje: str
-    reserva: Reserva
-    def __init__(self, mensaje: _Optional[str] = ..., reserva: _Optional[_Union[Reserva, _Mapping]] = ...) -> None: ...
+    propiedad: Reserva
+    def __init__(self, mensaje: _Optional[str] = ..., propiedad: _Optional[_Union[Reserva, _Mapping]] = ...) -> None: ...
 
 class Segmento(_message.Message):
     __slots__ = ["legs"]
