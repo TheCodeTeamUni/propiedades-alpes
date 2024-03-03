@@ -17,7 +17,7 @@ class ComandoAgregarUbicacion(Record):
     specversion = String(default="v1")
     type = String(default="AgregarUbicacion")
     datacontenttype = String()
-    service_name = String(default="ubicacion.aeroalpes")
+    service_name = String(default="ubicacion.propiedadesalpes")
     data = AgregarUbicacion
 
     def __init__(self, *args, **kwargs):
