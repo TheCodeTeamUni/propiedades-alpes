@@ -3,8 +3,8 @@ from .utils import time_millis
 import uuid
 
 class ReservaPagada(Record):
-    id = String(),
-    id_correlacion = String(),
+    id = String()
+    id_correlacion = String()
     reserva_id = String()
     monto = Double()
     monto_vat = Double()
