@@ -92,3 +92,17 @@ fuser -k <puerto>/tcp
 ```bash
 docker-compose --profile <pulsar|propiedadesalpes|ui|notificacion> up
 ```
+
+
+
+
+## Base de datos
+docker-compose --profile db up
+
+## Pulsar
+docker-compose --profile pulsar up
+
+## Pagos
+uvicorn pagos.main:app --host localhost --port 8001 --reload
+
+
