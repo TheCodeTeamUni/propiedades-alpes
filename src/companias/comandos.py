@@ -15,7 +15,7 @@ class ComandoAgregarCompania(Record):
     specversion = String(default="v1")
     type = String(default="AgregarCompania")
     datacontenttype = String()
-    service_name = String(default="companias.aeroalpes")
+    service_name = String(default="companias.propiedadesalpes")
     data = AgregarCompania
 
     def __init__(self, *args, **kwargs):

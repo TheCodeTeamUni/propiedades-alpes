@@ -14,7 +14,7 @@ class Config(BaseSettings):
     APP_VERSION: str = "1"
 
 settings = Config()
-app_configs: dict[str, Any] = {"title": "Compania AeroAlpes"}
+app_configs: dict[str, Any] = {"title": "Compania PropiedadesAlpes"}
 
 app = FastAPI(**app_configs)
 tasks = list()
