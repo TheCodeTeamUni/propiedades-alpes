@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from pydantic import BaseSettings
 from typing import Any
 
-from .eventos import EventoPago, PagoRevertido, ReservaPagada
 from .comandos import AgregarContrato, ComandoAgregarContrato
 from .consumidores import suscribirse_a_topico
 from .despachadores import Despachador
