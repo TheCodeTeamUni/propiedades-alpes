@@ -79,14 +79,6 @@ Desde el directorio principal ejecute el siguiente comando.
 uvicorn companias.main:app --host localhost --port 8004 --reload
 ```
 
-### Ejecutar Aplicación Compañias
-
-Desde el directorio principal ejecute el siguiente comando.
-
-```bash
-uvicorn companias.main:app --host localhost --port 8004 --reload
-```
-
 ## Comandos útiles
 
 ### Listar contenedoras en ejecución
