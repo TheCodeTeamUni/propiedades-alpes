@@ -55,6 +55,38 @@ Desde el directorio principal ejecute el siguiente comando.
 uvicorn contratos.main:app --host localhost --port 8001 --reload
 ```
 
+### Ejecutar Aplicación Localización
+
+Desde el directorio principal ejecute el siguiente comando.
+
+```bash
+uvicorn localizacion.main:app --host localhost --port 8002 --reload
+```
+
+### Ejecutar Aplicación Planos
+
+Desde el directorio principal ejecute el siguiente comando.
+
+```bash
+uvicorn planos.main:app --host localhost --port 8003 --reload
+```
+
+### Ejecutar Aplicación Compañias
+
+Desde el directorio principal ejecute el siguiente comando.
+
+```bash
+uvicorn companias.main:app --host localhost --port 8004 --reload
+```
+
+### Ejecutar Aplicación Compañias
+
+Desde el directorio principal ejecute el siguiente comando.
+
+```bash
+uvicorn companias.main:app --host localhost --port 8004 --reload
+```
+
 ## Comandos útiles
 
 ### Listar contenedoras en ejecución
