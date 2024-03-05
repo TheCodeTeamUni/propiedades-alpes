@@ -1,9 +1,3 @@
-"""Mixins reusables parte del seedwork del proyecto
-
-En este archivo usted encontrará las Mixins reusables parte del seedwork del proyecto
-
-"""
-
 from .reglas import ReglaNegocio
 from .excepciones import ReglaNegocioExcepcion
 

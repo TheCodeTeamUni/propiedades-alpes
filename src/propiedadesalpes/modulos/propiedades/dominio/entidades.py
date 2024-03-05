@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 
 import propiedadesalpes.modulos.propiedades.dominio.objetos_valor as ov
 from propiedadesalpes.modulos.propiedades.dominio.eventos import PropiedadCreada
-from propiedadesalpes.seedwork.dominio.entidades import Locacion, AgregacionRaiz, Entidad
+from propiedadesalpes.seedwork.dominio.entidades import AgregacionRaiz
 
 
 @dataclass

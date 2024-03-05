@@ -1,7 +1,6 @@
 import propiedadesalpes.seedwork.presentacion.api as api
 import json
 from propiedadesalpes.modulos.propiedades.aplicacion.servicios import ServicioPropiedad
-from propiedadesalpes.modulos.propiedades.aplicacion.dto import ReservaDTO
 from propiedadesalpes.seedwork.dominio.excepciones import ExcepcionDominio
 
 from flask import redirect, render_template, request, session, url_for
@@ -18,6 +17,7 @@ bp = api.crear_blueprint('propiedades', '/propiedades')
 @bp.route('/propiedad', methods=('POST',))
 def crear_propiedad():
     try:
+        session['uow_metodo'] = 'pulsar'
         propiedad_dict = request.json
 
         map_propiedad = MapeadorPropiedadDTOJson()

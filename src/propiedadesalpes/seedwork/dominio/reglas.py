@@ -1,14 +1,9 @@
-"""Reglas de negocio reusables parte del seedwork del proyecto
-
-En este archivo usted encontrará reglas de negocio reusables parte del seedwork del proyecto
-
-"""
-
 from abc import ABC, abstractmethod
+
 
 class ReglaNegocio(ABC):
 
-    __mensaje: str ='La regla de negocio es invalida'
+    __mensaje: str = 'La regla de negocio es invalida'
 
     def __init__(self, mensaje):
         self.__mensaje = mensaje
