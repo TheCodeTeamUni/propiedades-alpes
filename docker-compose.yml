@@ -4,16 +4,22 @@ services:
   # MySQL8
   db:
     image: mysql:8
+    hostname: mysqldb
     container_name: mysqldb
-    profiles: ["db"]
-    restart: on-failure
-    ports:
-      - "3306:3306"
+    cap_add:
+      - SYS_NICE
+    restart: always
     environment:
       - MYSQL_DATABASE=propiedadesalpes
       - MYSQL_ROOT_PASSWORD=adminadmin
+    profiles: ["db"]
     networks:
-      - internal
+      - alpes
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   pulsar:
     image: apachepulsar/pulsar:3.2.0
@@ -25,7 +31,8 @@ services:
       - "8080:8080"
     command: ["bin/pulsar", "standalone"]
     networks:
-      - internal
+      - alpes
 
 networks:
-  internal:
+  alpes:
+    driver: bridge

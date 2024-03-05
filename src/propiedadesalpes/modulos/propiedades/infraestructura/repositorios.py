@@ -1,41 +1,11 @@
 from propiedadesalpes.config.db import db
-from propiedadesalpes.modulos.propiedades.dominio.repositorios import RepositorioPropiedades, RepositorioProveedores
+from propiedadesalpes.modulos.propiedades.dominio.repositorios import RepositorioPropiedades
 from propiedadesalpes.modulos.propiedades.dominio.objetos_valor import NombrePropiedades, Odo, Leg, Segmento, Itinerario, CodigoIATA
 from propiedadesalpes.modulos.propiedades.dominio.entidades import Proveedor, Propiedadespuerto, Propiedad
 from propiedadesalpes.modulos.propiedades.dominio.fabricas import FabricaPropiedades
 from .dto import Reserva as ReservaDTO
 from .mapeadores import MapeadorReserva
 from uuid import UUID
-
-class RepositorioProveedoresSQLite(RepositorioProveedores):
-
-    def obtener_por_id(self, id: UUID) -> Propiedad:
-        # TODO
-        raise NotImplementedError
-
-    def obtener_todos(self) -> list[Propiedad]:
-        origen=Propiedadespuerto(codigo="CPT", nombre="Cape Town International")
-        destino=Propiedadespuerto(codigo="JFK", nombre="JFK International Airport")
-        legs=[Leg(origen=origen, destino=destino)]
-        segmentos = [Segmento(legs)]
-        odos=[Odo(segmentos=segmentos)]
-
-        proveedor = Proveedor(codigo=CodigoIATA(codigo="AV"), nombre=NombrePropiedades(nombre= "Avianca"))
-        proveedor.itinerarios = [Itinerario(odos=odos, proveedor=proveedor)]
-        return [proveedor]
-
-    def agregar(self, entity: Propiedad):
-        # TODO
-        raise NotImplementedError
-
-    def actualizar(self, entity: Propiedad):
-        # TODO
-        raise NotImplementedError
-
-    def eliminar(self, entity_id: UUID):
-        # TODO
-        raise NotImplementedError
-
 
 class RepositorioPropiedadesSQLite(RepositorioPropiedades):
 

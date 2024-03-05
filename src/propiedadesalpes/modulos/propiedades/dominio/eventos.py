@@ -4,9 +4,11 @@ from propiedadesalpes.seedwork.dominio.eventos import (EventoDominio)
 from datetime import datetime
 import uuid
 
+class EventoPropiedad(EventoDominio):
+    ...
 @dataclass
-class PropiedadCreada(EventoDominio):
-    id_propiedad = uuid.UUID = None
+class PropiedadCreada(EventoPropiedad):
+    id_propiedad = str = None
     fecha_creacion: str = None
     nombre: str = None
     descripcion: str = None
