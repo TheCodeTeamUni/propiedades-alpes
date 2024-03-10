@@ -13,7 +13,7 @@ class Config(BaseSettings):
     APP_VERSION: str = "1"
 
 settings = Config()
-app_configs: dict[str, Any] = {"title": "Pagos AeroAlpes"}
+app_configs: dict[str, Any] = {"title": "Contratos Propiedades Alpes"}
 
 app = FastAPI(**app_configs)
 tasks = list()

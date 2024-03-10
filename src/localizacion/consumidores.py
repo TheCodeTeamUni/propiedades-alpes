@@ -8,7 +8,7 @@ from .utils import broker_host
 
 async def suscribirse_a_topico(topico: str, suscripcion: str, schema: Record, tipo_consumidor:_pulsar.ConsumerType=_pulsar.ConsumerType.Shared):
     try:
-        async with aiopulsar.connect(f'pulsar://{utils.broker_host()}:6650') as cliente:
+        async with aiopulsar.connect(f'pulsar://{broker_host()}:6650') as cliente:
             async with cliente.subscribe(
                 topico, 
                 consumer_type=tipo_consumidor,

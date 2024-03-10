@@ -27,7 +27,7 @@ async def app_startup():
     global tasks
     global eventos
     task1 = asyncio.ensure_future(suscribirse_a_topico(
-        "eventos-contrantos", "propiedadesalpes-bff", "public/default/eventos-contrantos", eventos=eventos))
+        "eventos-localizacion", "propiedadesalpes-bff", "public/default/eventos-localizacion", eventos=eventos))
     tasks.append(task1)
 
 

@@ -1,46 +1,41 @@
 import typing
 import strawberry
-import uuid
 import requests
 import os
 
-from datetime import datetime
+
+LOCALIZACION_HOST = os.getenv("LOCALIZACION_ADDRES", default="localhost")
 
 
-AEROALPES_HOST = os.getenv("AEROALPES_ADDRESS", default="localhost")
-FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
+def obtener_localizaciones(root) -> typing.List["Propiedad"]:
+    propiedades_json = requests.get(
+        f'http://{LOCALIZACION_HOST}:8002/obtener-localizaciones').json()
+    propiedades = []
 
-def obtener_reservas(root) -> typing.List["Reserva"]:
-    reservas_json = requests.get(f'http://{AEROALPES_HOST}:5000/vuelos/reserva').json()
-    reservas = []
-
-    for reserva in reservas_json:
-        reservas.append(
-            Reserva(
-                fecha_creacion=datetime.strptime(reserva.get('fecha_creacion'), FORMATO_FECHA), 
-                fecha_actualizacion=datetime.strptime(reserva.get('fecha_actualizacion'), FORMATO_FECHA), 
-                id=reserva.get('id'), 
-                id_usuario=reserva.get('id_usuario', '')
+    for propiedad in propiedades_json:
+        propiedades.append(
+            Propiedad(
+                id=propiedad.get('id'),
+                id_propiedad=propiedad.get('id_propiedad'),
+                latitud=propiedad.get('latitud'),
+                longitud=propiedad.get('longitud'),
+                created_at=propiedad.get('created_at')
             )
         )
 
-    return reservas
+    return propiedades
 
 
 @strawberry.type
-class Reserva:
-    id: str
-    id_usuario: str
-    fecha_creacion: datetime
-    fecha_actualizacion: datetime
+class Propiedad:
+    id: int
+    id_propiedad: str
+    latitud: float
+    longitud: float
+    created_at: str
+
 
 @strawberry.type
-class ReservaRespuesta:
+class PropiedadRespuesta:
     mensaje: str
     codigo: int
-
-
-
-
-
-
