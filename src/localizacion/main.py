@@ -18,13 +18,16 @@ from sqlalchemy.orm import Session
 
 
 Base = declarative_base()
-engine = create_engine('sqlite:///propiedades.db', connect_args={"check_same_thread": False})
+DATABASE_URL = "mysql+mysqlconnector://root:adminadmin@localhost:3306/propiedadesalpes"
+#engine = create_engine('sqlite:///localizacion.db', connect_args={"check_same_thread": False})
+engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-class Propiedad(Base):
-    __tablename__ = "propiedades"
+
+class   Localizacion(Base):
+    __tablename__ = "localizaciones"
     id = Column(Integer, primary_key=True, index=True)
-    id_propiedad = Column(String, index=True)
+    id_propiedad = Column(String(255), index=True)
     latitud = Column(Float)
     longitud = Column(Float)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
@@ -89,7 +92,7 @@ async def agregar_propiedad(propiedad_data: dict):
             raise HTTPException(status_code=422, detail="Todos los campos son obligatorios")
 
         # Crear instancia de la clase Propiedad
-        propiedad = Propiedad(id_propiedad=id_propiedad, latitud=latitud, longitud=longitud)
+        propiedad = Localizacion(id_propiedad=id_propiedad, latitud=latitud, longitud=longitud)
 
         # Agregar propiedad a la base de datos
         db = SessionLocal()
@@ -115,5 +118,5 @@ def get_db():
         
 @app.get("/obtener-localizaciones", response_model=list)
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    propiedades = db.query(Propiedad).all()
+    propiedades = db.query(Localizacion).all()
     return propiedades
