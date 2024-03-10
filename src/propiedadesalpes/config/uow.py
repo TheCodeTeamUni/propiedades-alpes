@@ -28,7 +28,6 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
     def savepoints(self) -> list:
         return list[db.session.get_nested_transaction()]
 
-    # Revsiar: Diferente al profesor
     @property
     def batches(self) -> list[Batch]:
         return self._batches
@@ -50,11 +49,10 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
 
         super().rollback()
 
-    # Revisar: Diferente al profesor
     def savepoint(self):
         db.session.begin_nested()
 
-# Revisar: (Revisar donde se llama)
+
 class UnidadTrabajoPulsar(UnidadTrabajo):
 
     def __init__(self):

@@ -12,7 +12,7 @@ from propiedadesalpes.modulos.propiedades.infraestructura.repositorios import Re
 
 @dataclass
 class CrearPropiedad(Comando):
-    eventId: int
+    eventId: str
     fecha_creacion: str
     nombre: str
     descripcion: str
@@ -33,7 +33,7 @@ class CrearPropiedadHandler(CrearPropiedadBaseHandler):
         propiedad.crear_propiedad(propiedad)
 
         repositorio = self.fabrica_repositorio.crear_objeto(
-            RepositorioPropiedades.__class__)
+            RepositorioPropiedades)
 
         UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, propiedad)
         UnidadTrabajoPuerto.savepoint()

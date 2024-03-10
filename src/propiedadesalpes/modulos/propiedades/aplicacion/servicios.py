@@ -5,8 +5,7 @@ from propiedadesalpes.modulos.propiedades.infraestructura.fabricas import Fabric
 from propiedadesalpes.modulos.propiedades.infraestructura.repositorios import RepositorioPropiedades
 from propiedadesalpes.seedwork.infraestructura.uow import UnidadTrabajoPuerto
 from .mapeadores import MapeadorPropiedad
-
-from .dto import ReservaDTO
+from .dto import PropiedadDTO
 
 import asyncio
 
@@ -21,11 +20,11 @@ class ServicioPropiedad(Servicio):
         return self._fabrica_repositorio
     
     @property
-    def fabrica_vuelos(self):
+    def fabrica_propiedades(self):
         return self._fabrica_vuelos       
     
-    def crear_propiedad(self, propiedad_dto: ReservaDTO) -> ReservaDTO:
-        propiedad: Propiedad = self.fabrica_vuelos.crear_objeto(propiedad_dto, MapeadorPropiedad())
+    def crear_propiedad(self, propiedad_dto: PropiedadDTO) -> PropiedadDTO:
+        propiedad: Propiedad = self.fabrica_propiedades.crear_objeto(propiedad_dto, MapeadorPropiedad())
         propiedad.crear_propiedad(propiedad)
 
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
@@ -34,9 +33,9 @@ class ServicioPropiedad(Servicio):
         UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
 
-        return self.fabrica_vuelos.crear_objeto(propiedad, MapeadorPropiedad())
+        return self.fabrica_propiedades.crear_objeto(propiedad, MapeadorPropiedad())
 
-    def obtener_propiedad_por_id(self, id) -> ReservaDTO:
+    def obtener_propiedad_por_id(self, id) -> PropiedadDTO:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
-        return self.fabrica_vuelos.crear_objeto(repositorio.obtener_por_id(id), MapeadorPropiedad())
+        return self.fabrica_propiedades.crear_objeto(repositorio.obtener_por_id(id), MapeadorPropiedad())
 
