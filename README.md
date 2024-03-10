@@ -49,7 +49,7 @@ flask --app src/propiedadesalpes/api --debug run
 
 ### Ejecutar Aplicación Contratos
 
-Desde el directorio principal ejecute el siguiente comando.
+Debe tener creado un entorno virtual e instalado las dependecias. Desde el directorio src ejecute el siguiente comando:
 
 ```bash
 uvicorn contratos.main:app --host localhost --port 8001 --reload
@@ -57,7 +57,7 @@ uvicorn contratos.main:app --host localhost --port 8001 --reload
 
 ### Ejecutar Aplicación Localización
 
-Desde el directorio principal ejecute el siguiente comando.
+Debe tener creado un entorno virtual e instalado las dependecias. Desde el directorio src ejecute el siguiente comando:
 
 ```bash
 uvicorn localizacion.main:app --host localhost --port 8002 --reload
@@ -65,7 +65,7 @@ uvicorn localizacion.main:app --host localhost --port 8002 --reload
 
 ### Ejecutar Aplicación Planos
 
-Desde el directorio principal ejecute el siguiente comando.
+Debe tener creado un entorno virtual e instalado las dependecias. Desde el directorio src ejecute el siguiente comando:
 
 ```bash
 uvicorn planos.main:app --host localhost --port 8003 --reload
@@ -73,11 +73,25 @@ uvicorn planos.main:app --host localhost --port 8003 --reload
 
 ### Ejecutar Aplicación Compañias
 
-Desde el directorio principal ejecute el siguiente comando.
+Debe tener creado un entorno virtual e instalado las dependecias. Desde el directorio src ejecute el siguiente comando:
 
 ```bash
 uvicorn companias.main:app --host localhost --port 8004 --reload
 ```
+
+### Ejecutar el BFF
+
+Debe tener creado un entorno virtual e instalado las dependecias. Desde el directorio src ejecute el siguiente comando:
+
+```bash
+uvicorn bff_web.main:app --host localhost --port 9000 --reload
+```
+
+Para ingresar a la interza gráfica de GraphQL, debe ir al navegador:
+```bash
+http:localhost:9000/v1
+```
+
 
 ## Comandos útiles
 
