@@ -2,7 +2,7 @@ from propiedadesalpes.modulos.propiedades.dominio.eventos import PropiedadCreada
 from propiedadesalpes.seedwork.aplicacion.handlers import Handler
 from propiedadesalpes.modulos.propiedades.infraestructura.despachadores import Despachador
 
-class HandlerReservaIntegracion(Handler):
+class HandlerPropiedadIntegracion(Handler):
 
     @staticmethod
     def handle_propiedad_creada(evento):

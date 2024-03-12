@@ -13,35 +13,29 @@ def importar_modelos_alchemy():
     import propiedadesalpes.modulos.propiedades.infraestructura.dto
 
 def comenzar_consumidor():
-    """
-    Este es un código de ejemplo. Aunque esto sea funcional puede ser un poco peligroso tener 
-    threads corriendo por si solos. Mi sugerencia es en estos casos usar un verdadero manejador
-    de procesos y threads como Celery.
-    """
-
     import threading
-    import propiedadesalpes.modulos.propiedades.infraestructura.consumidores as vuelos
+    import propiedadesalpes.modulos.propiedades.infraestructura.consumidores as propiedades
 
     # Suscripción a eventos
-    threading.Thread(target=vuelos.suscribirse_a_eventos).start()
+    threading.Thread(target=propiedades.suscribirse_a_eventos).start()
 
     # Suscripción a comandos
-    threading.Thread(target=vuelos.suscribirse_a_comandos).start()
+    threading.Thread(target=propiedades.suscribirse_a_comandos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask
     app = Flask(__name__, instance_relative_config=True)
     
+    app.config['SQLALCHEMY_DATABASE_URI'] =\
+            'sqlite:///' + os.path.join(basedir, 'database.db')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     app.secret_key = '9d58f98f-3ae8-4149-a09f-3a8c2012e32c'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.config['TESTING'] = configuracion.get('TESTING')
 
      # Inicializa la DB
-    from propiedadesalpes.config.db import init_db, database_connection
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = database_connection(configuracion, basedir=basedir)
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+    from propiedadesalpes.config.db import init_db
     init_db(app)
 
     from propiedadesalpes.config.db import db

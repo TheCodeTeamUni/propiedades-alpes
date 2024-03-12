@@ -37,93 +37,30 @@ class MapeadorPropiedadDTOJson(AppMap):
 class MapeadorPropiedad(RepMap):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
 
-    """
-    def _procesar_itinerario(self, itinerario_dto: PropiedadDTO) -> Itinerario:
-        odos = list()
-
-        for odo_dto in itinerario_dto.odos:
-            segmentos = list()
-            for seg_dto in odo_dto.segmentos:
-
-                legs = list()
-
-                for leg_dto in seg_dto.legs:
-                    destino = Propiedadespuerto(codigo=leg_dto.destino.get(
-                        'codigo'), nombre=leg_dto.destino.get('nombre'))
-                    origen = Propiedadespuerto(codigo=leg_dto.origen.get(
-                        'codigo'), nombre=leg_dto.origen.get('nombre'))
-                    fecha_salida = datetime.strptime(
-                        leg_dto.fecha_salida, self._FORMATO_FECHA)
-                    fecha_llegada = datetime.strptime(
-                        leg_dto.fecha_llegada, self._FORMATO_FECHA)
-
-                    leg: Leg = Leg(fecha_salida, fecha_llegada,
-                                   origen, destino)
-
-                    legs.append(leg)
-
-                segmentos.append(Segmento(legs))
-
-            odos.append(Odo(segmentos))
-
-        return Itinerario(odos)
-    """
-
-    def obtener_tipo(self) -> type:
-        return Propiedad.__class__
-
-    def locacion_a_dict(self, locacion):
-        if not locacion:
-            return dict(codigo=None, nombre=None, fecha_actualizacion=None, fecha_creacion=None)
-
-        return dict(
-            codigo=locacion.codigo,   nombre=locacion.nombre,   fecha_actualizacion=locacion.fecha_actualizacion.strftime(self._FORMATO_FECHA),   fecha_creacion=locacion.fecha_creacion.strftime(self._FORMATO_FECHA)
-        )
-
-    """
     def entidad_a_dto(self, entidad: Propiedad) -> PropiedadDTO:
 
-        fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
-        fecha_actualizacion = entidad.fecha_actualizacion.strftime(
-            self._FORMATO_FECHA)
         _id = str(entidad.id)
-        itinerarios = list()
+        fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
+        nombre = entidad.nombre
+        descripcion = entidad.descripcion
+        tipo = entidad.tipo
+        piso = entidad.piso
+        longitud = entidad.longitud
+        latitud = entidad.latitud
 
-        for itin in entidad.itinerarios:
-            odos = list()
-            for odo in itin.odos:
-                segmentos = list()
-                for seg in odo.segmentos:
-                    legs = list()
-                    for leg in seg.legs:
-                        fecha_salida = leg.fecha_salida.strftime(
-                            self._FORMATO_FECHA)
-                        fecha_llegada = leg.fecha_llegada.strftime(
-                            self._FORMATO_FECHA)
-                        origen = self.locacion_a_dict(leg.origen)
-                        destino = self.locacion_a_dict(leg.destino)
-                        leg = LegDTO(
-                            fecha_salida=fecha_salida, fecha_llegada=fecha_llegada, origen=origen, destino=destino)
-
-                        legs.append(leg)
-
-                    segmentos.append(SegmentoDTO(legs))
-                odos.append(OdoDTO(segmentos))
-            itinerarios.append(ItinerarioDTO(odos))
-
-        return ReservaDTO(fecha_creacion, fecha_actualizacion, _id, itinerarios)
+        return PropiedadDTO(_id, fecha_creacion, nombre, descripcion, tipo, piso, longitud, latitud)
 
     
-
     def dto_a_entidad(self, dto: PropiedadDTO) -> Propiedad:
-        propiedad = Propiedad()
-        propiedad.itinerarios = list()
-
-        itinerarios_dto: list[ItinerarioDTO] = dto.itinerarios
-
-        for itin in itinerarios_dto:
-            propiedad.itinerarios.append(self._procesar_itinerario(itin))
+        propiedad = Propiedad(
+            id=dto.eventId,
+            fecha_creacion=datetime.strptime(dto.fecha_creacion, self._FORMATO_FECHA),
+            nombre=dto.nombre,
+            descripcion=dto.descripcion,
+            tipo=dto.tipo,
+            piso=dto.piso,
+            longitud=dto.longitud,
+            latitud=dto.latitud
+        )
 
         return propiedad
-
-    """
